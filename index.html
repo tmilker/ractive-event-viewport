@@ -1,46 +1,70 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Ractive viewport visible</title>
-	<style>
-		body, html{
-			height: 100%;
-			width: 100%;
-			margin: 0;
-			padding: 0
-		}
-		*{
-			 -webkit-box-sizing: border-box;
-			 -moz-box-sizing: border-box;
-			 box-sizing: border-box;
-		}
-		#body{
-			height: 100%;
-			width: 100%;
-			overflow: auto;
-			margin: 0 auto;
-		}
-		.element{
-			padding: 10px;
-			background-color: white: 
-		}
-		.element:nth-child(odd){
-			background-color: #F2F2F2;
-		}
-	</style>
-</head>
-<body>
-    <script type="text/ractive" id="scroller">
-		{{#list:i}}
-			<div class="element" on-viewport="visible:{{i}}" index="{{i}}"><b>{{i}}</b>{{.}}</div>
-		{{/list}}
-	</script>
-	
-	<div id="body" class="scroller"></div>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Ractive-event-viewport by svapreddy</title>
 
-	<script src="lib/ractive.js"></script>
-	<script src="lib/in-view.js"></script>
-	<script src="demo.js"></script>
-</body>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Ractive-event-viewport</h1>
+        <p>Event will be fired when Element has come visible from invisible state or vice versa.</p>
+
+        <p class="view"><a href="https://github.com/svapreddy/ractive-event-viewport">View the Project on GitHub <small>svapreddy/ractive-event-viewport</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/svapreddy/ractive-event-viewport/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/svapreddy/ractive-event-viewport/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/svapreddy/ractive-event-viewport">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a name="ractive-event-viewport" class="anchor" href="#ractive-event-viewport"><span class="octicon octicon-link"></span></a>Ractive-event-viewport</h3>
+
+<p>Event that is fired as soon as an element appears in the user’s viewport.It uses getBoundingClientRect() method.</p>
+
+<p>Requires: RactiveJS</p>
+
+<h3>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>The script adds <code>viewport</code> event to RactiveJS. The event will only fire when the element comes in to view of the viewport, and out of viewport. It won't keep triggering element remains in view or not in view.</p>
+
+<pre><code>&lt;div on-viewport="someFunc"&gt;Lorem Ipsum...&lt;/div&gt;
+
+ractiveObj.on('someFunc', function(event){
+   event.original.current // Current state
+   event.original.previous // Previous state
+   event.original.visible // same as event.original.current
+});
+</code></pre>
+
+<h3>
+<a name="how-it-works" class="anchor" href="#how-it-works"><span class="octicon octicon-link"></span></a>How it works</h3>
+
+<p>An interval in the background checks for the position of the bounding rectangle of element against the viewport dimensions and the parent's scroll position. If it detects any change in view state, it triggers an event on element.</p>
+
+<h3>
+<a name="browser-compatibility" class="anchor" href="#browser-compatibility"><span class="octicon octicon-link"></span></a>Browser Compatibility</h3>
+
+<p>Browsers that support getBoundingClientRect().</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/svapreddy">svapreddy</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
 </html>
